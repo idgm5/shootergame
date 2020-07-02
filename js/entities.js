@@ -36,17 +36,10 @@ class Entity extends Phaser.GameObjects.Sprite {
   }
 }
 
-class Scores extends Entity {
-  constructor(username, score){
+class NewScore extends Entity {
+  constructor(username, score = 0){
     this.username = username;
     this.score = score;
-  }
-}
-
-class NewGame extends Entity {
-  constructor(name, gameid = 0){
-    this.name = name;
-    this.gameid = gameid;
   }
 }
 

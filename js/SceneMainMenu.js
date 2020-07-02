@@ -44,6 +44,7 @@ class SceneMainMenu extends Phaser.Scene {
       this.sfx.btnDown.play();
     }, this);
 
+
     this.btnPlay.on("pointerup", function() {
       this.btnPlay.setTexture("sprBtnPlay");
       this.scene.start("SceneMain");

@@ -1,33 +1,11 @@
-async function createGame(name) {
-  const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/mFO8zw10kyIoLrMFk2KV`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({"name": name })
-    });
-  const data = await response.json();
-  return data;
-}
-
-const generateGame = (name) => {
-  createGame(name).then((response) => {
-    console.log(response);
-    ell;
-    // localStorage.clear();
-    // const createGame = new NewGame(name, response.result);
-    // localStorage.setItem('game', JSON.stringify(createGame));
-  });
-};
-
 class SceneMain extends Phaser.Scene {
   constructor() {
-    super({ key: "SceneMain" });
+    super({
+      key: "SceneMain"
+    });
   }
 
   preload() {
-    generateGame("space-shooter-test-01");
     this.load.spritesheet("sprExplosion", "content/sprExplosion.png", {
       frameWidth: 32,
       frameHeight: 32
@@ -122,8 +100,7 @@ class SceneMain extends Phaser.Scene {
             Phaser.Math.Between(0, this.game.config.width),
             0
           );
-        }
-        else if (Phaser.Math.Between(0, 10) >= 5) {
+        } else if (Phaser.Math.Between(0, 10) >= 5) {
           if (this.getEnemiesByType("ChaserShip").length < 5) {
 
             enemy = new ChaserShip(
@@ -132,8 +109,7 @@ class SceneMain extends Phaser.Scene {
               0
             );
           }
-        }
-        else {
+        } else {
           enemy = new CarrierShip(
             this,
             Phaser.Math.Between(0, this.game.config.width),
@@ -151,6 +127,7 @@ class SceneMain extends Phaser.Scene {
     });
 
     this.physics.add.collider(this.playerLasers, this.enemies, function(playerLaser, enemy) {
+
       if (enemy) {
         if (enemy.onDestroy !== undefined) {
           enemy.onDestroy();
@@ -162,7 +139,7 @@ class SceneMain extends Phaser.Scene {
 
     this.physics.add.overlap(this.player, this.enemies, function(player, enemy) {
       if (!player.getData("isDead") &&
-          !enemy.getData("isDead")) {
+        !enemy.getData("isDead")) {
         player.explode(false);
         player.onDestroy();
         enemy.explode(true);
@@ -171,7 +148,7 @@ class SceneMain extends Phaser.Scene {
 
     this.physics.add.overlap(this.player, this.enemyLasers, function(player, laser) {
       if (!player.getData("isDead") &&
-          !laser.getData("isDead")) {
+        !laser.getData("isDead")) {
         player.explode(false);
         player.onDestroy();
         laser.destroy();
@@ -191,26 +168,26 @@ class SceneMain extends Phaser.Scene {
   }
 
   update() {
+    var score = 0;
+    var scoreText;
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff'});
 
     if (!this.player.getData("isDead")) {
       this.player.update();
       if (this.keyW.isDown) {
         this.player.moveUp();
-      }
-      else if (this.keyS.isDown) {
+      } else if (this.keyS.isDown) {
         this.player.moveDown();
       }
       if (this.keyA.isDown) {
         this.player.moveLeft();
-      }
-      else if (this.keyD.isDown) {
+      } else if (this.keyD.isDown) {
         this.player.moveRight();
       }
 
       if (this.keySpace.isDown) {
         this.player.setData("isShooting", true);
-      }
-      else {
+      } else {
         this.player.setData("timerShootTick", this.player.getData("timerShootDelay") - 1);
         this.player.setData("isShooting", false);
       }
@@ -256,6 +233,8 @@ class SceneMain extends Phaser.Scene {
         laser.y > this.game.config.height + laser.displayHeight) {
         if (laser) {
           laser.destroy();
+          score += 1;
+          scoreText.setText('Score: ' + score);
         }
       }
     }
