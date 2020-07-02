@@ -1,6 +1,6 @@
-class SceneGameOver extends Phaser.Scene {
+class SceneScores extends Phaser.Scene {
   constructor() {
-    super({ key: "SceneGameOver" });
+    super({ key: "SceneScores" });
   }
   create() {
 
@@ -11,9 +11,10 @@ class SceneGameOver extends Phaser.Scene {
       color: '#ffffff',
       align: 'center'
     });
+
     this.title.setOrigin(0.5);
 
-    this.score = this.add.text(this.game.config.width * 0.5, 128, "Score: 10500", {
+    this.score = this.add.text(this.game.config.width * 0.5, 128, "SCORE: 10500", {
       fontFamily: 'monospace',
       fontSize: 48,
       fontStyle: 'bold',
@@ -21,7 +22,7 @@ class SceneGameOver extends Phaser.Scene {
       align: 'center'
     });
 
-    this.score.setOrigin(0.1);
+    this.score.setOrigin(0.5, -1);
 
     this.sfx = {
       btnOver: this.sound.add("sndBtnOver"),
@@ -69,4 +70,5 @@ class SceneGameOver extends Phaser.Scene {
       this.backgrounds[i].update();
     }
   }
+
 }

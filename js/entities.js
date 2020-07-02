@@ -36,6 +36,20 @@ class Entity extends Phaser.GameObjects.Sprite {
   }
 }
 
+class Scores extends Entity {
+  constructor(username, score){
+    this.username = username;
+    this.score = score;
+  }
+}
+
+class NewGame extends Entity {
+  constructor(name, gameid = 0){
+    this.name = name;
+    this.gameid = gameid;
+  }
+}
+
 class Player extends Entity {
   constructor(scene, x, y, key) {
     super(scene, x, y, key, "Player");
@@ -64,7 +78,7 @@ class Player extends Entity {
     this.scene.time.addEvent({ // go to game over scene
       delay: 1000,
       callback: function() {
-        this.scene.scene.start("SceneGameOver");
+        this.scene.scene.start("SceneScores");
       },
       callbackScope: this,
       loop: false

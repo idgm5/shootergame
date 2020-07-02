@@ -1,9 +1,33 @@
+async function createGame(name) {
+  const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/mFO8zw10kyIoLrMFk2KV`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({"name": name })
+    });
+  const data = await response.json();
+  return data;
+}
+
+const generateGame = (name) => {
+  createGame(name).then((response) => {
+    console.log(response);
+    ell;
+    // localStorage.clear();
+    // const createGame = new NewGame(name, response.result);
+    // localStorage.setItem('game', JSON.stringify(createGame));
+  });
+};
+
 class SceneMain extends Phaser.Scene {
   constructor() {
     super({ key: "SceneMain" });
   }
 
   preload() {
+    generateGame("space-shooter-test-01");
     this.load.spritesheet("sprExplosion", "content/sprExplosion.png", {
       frameWidth: 32,
       frameHeight: 32
