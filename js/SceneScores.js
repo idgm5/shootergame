@@ -1,28 +1,28 @@
-// async function createGame(name, score) {
-//   const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/mFO8zw10kyIoLrMFk2KV/scores/`, {
-//     method: 'POST',
-//     headers: {
-//       'Accept': 'application/json',
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       "user": name,
-//       "score": score
-//     })
-//   });
-//   const data = await response.json();
-//   return data;
-// }
-//
-// const generateGame = (name) => {
-//   createGame(name).then((response) => {
-//     console.log(response);
-//     ell;
-//     // localStorage.clear();
-//     // const createGame = new NewGame(name, response.result);
-//     // localStorage.setItem('game', JSON.stringify(createGame));
-//   });
-// };
+async function createGame(name, score) {
+  const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/mFO8zw10kyIoLrMFk2KV/scores/`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      "user": name,
+      "score": score
+    })
+  });
+  const data = await response.json();
+  return data;
+}
+
+const generateGame = (name) => {
+  createGame(name).then((response) => {
+    console.log(response);
+    ell;
+    // localStorage.clear();
+    // const createGame = new NewGame(name, response.result);
+    // localStorage.setItem('game', JSON.stringify(createGame));
+  });
+};
 
 class SceneScores extends Phaser.Scene {
   constructor() {

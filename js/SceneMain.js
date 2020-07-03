@@ -1,3 +1,7 @@
+var score = 0;
+var scoreText;
+
+
 class SceneMain extends Phaser.Scene {
   constructor() {
     super({
@@ -6,6 +10,7 @@ class SceneMain extends Phaser.Scene {
   }
 
   preload() {
+    scoreText = this.add.text(16, 16, ' ', { fontSize: '32px', fill: '#fff'});
     this.load.spritesheet("sprExplosion", "content/sprExplosion.png", {
       frameWidth: 32,
       frameHeight: 32
@@ -134,6 +139,7 @@ class SceneMain extends Phaser.Scene {
         }
         enemy.explode(true);
         playerLaser.destroy();
+        score += 1;
       }
     });
 
@@ -168,9 +174,7 @@ class SceneMain extends Phaser.Scene {
   }
 
   update() {
-    var score = 0;
-    var scoreText;
-    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff'});
+    scoreText.setText('Score: ' + score);
 
     if (!this.player.getData("isDead")) {
       this.player.update();
@@ -209,6 +213,7 @@ class SceneMain extends Phaser.Scene {
           enemy.destroy();
         }
       }
+
     }
 
     for (var i = 0; i < this.enemyLasers.getChildren().length; i++) {
@@ -233,8 +238,6 @@ class SceneMain extends Phaser.Scene {
         laser.y > this.game.config.height + laser.displayHeight) {
         if (laser) {
           laser.destroy();
-          score += 1;
-          scoreText.setText('Score: ' + score);
         }
       }
     }
