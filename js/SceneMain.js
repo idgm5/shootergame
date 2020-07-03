@@ -1,6 +1,13 @@
 var score = 0;
 var scoreText;
+var highText;
 
+const highestScore = JSON.parse(localStorage.getItem('highestScore'));
+
+if (highestScore === null) {
+  var zero = 0;
+  localStorage.setItem('highestScore', JSON.stringify(zero));
+}
 
 class SceneMain extends Phaser.Scene {
   constructor() {
@@ -10,7 +17,9 @@ class SceneMain extends Phaser.Scene {
   }
 
   preload() {
+    highText = this.add.text(16, 60, ' ', { fontSize: '16px', fill: '#fff'});
     scoreText = this.add.text(16, 16, ' ', { fontSize: '32px', fill: '#fff'});
+
     this.load.spritesheet("sprExplosion", "content/sprExplosion.png", {
       frameWidth: 32,
       frameHeight: 32
@@ -140,6 +149,10 @@ class SceneMain extends Phaser.Scene {
         enemy.explode(true);
         playerLaser.destroy();
         score += 1;
+        localStorage.setItem('currentScore', JSON.stringify(score));
+        if(score > parseInt(highestScore)){
+          localStorage.setItem('highestScore', JSON.stringify(score));
+        }
       }
     });
 
@@ -175,6 +188,7 @@ class SceneMain extends Phaser.Scene {
 
   update() {
     scoreText.setText('Score: ' + score);
+    highText.setText('Highest: ' + highestScore);
 
     if (!this.player.getData("isDead")) {
       this.player.update();

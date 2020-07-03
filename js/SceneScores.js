@@ -1,28 +1,31 @@
-async function createGame(name, score) {
-  const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/mFO8zw10kyIoLrMFk2KV/scores/`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      "user": name,
-      "score": score
-    })
-  });
-  const data = await response.json();
-  return data;
-}
+// async function createGame(name, score) {
+//   const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/mFO8zw10kyIoLrMFk2KV/scores/`, {
+//     method: 'POST',
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//       "user": name,
+//       "score": score
+//     })
+//   });
+//   const data = await response.json();
+//   return data;
+// }
 
-const generateGame = (name) => {
-  createGame(name).then((response) => {
-    console.log(response);
-    ell;
-    // localStorage.clear();
-    // const createGame = new NewGame(name, response.result);
-    // localStorage.setItem('game', JSON.stringify(createGame));
-  });
-};
+// const generateGame = (name) => {
+//   createGame(name).then((response) => {
+//     console.log(response);
+//     ell;
+//     // localStorage.clear();
+//     // const createGame = new NewGame(name, response.result);
+//     // localStorage.setItem('game', JSON.stringify(createGame));
+//   });
+// };
+
+// const highestScore = JSON.parse(localStorage.getItem('highestScore'));
+const currentScore = JSON.parse(localStorage.getItem('currentScore'));
 
 class SceneScores extends Phaser.Scene {
   constructor() {
@@ -40,7 +43,7 @@ class SceneScores extends Phaser.Scene {
 
     this.title.setOrigin(0.5);
 
-    this.score = this.add.text(this.game.config.width * 0.5, 128, "SCORE: 10500", {
+    this.score = this.add.text(this.game.config.width * 0.5, 128, " ", {
       fontFamily: 'monospace',
       fontSize: 48,
       fontStyle: 'bold',
@@ -49,6 +52,17 @@ class SceneScores extends Phaser.Scene {
     });
 
     this.score.setOrigin(0.5, -1);
+    this.score.setText('SCORE: ' + currentScore);
+
+    this.high = this.add.text(this.game.config.width * 0.5, 128, " ", {
+      fontFamily: 'monospace',
+      fontSize: 48,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center'
+    });
+    this.high.setOrigin(0.5, -4);
+    this.high.setText('HIGHEST: ' + highestScore);
 
     this.sfx = {
       btnOver: this.sound.add("sndBtnOver"),
