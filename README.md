@@ -54,10 +54,10 @@ npm test
 
 ## Game Design Document
 
--   Theme / Setting / Genre
+-   Genre
     -----------------------
 
-1.  A SPACER SHOOTER GAME
+- A SPACER SHOOTER GAME
 
 -   Core Gameplay Mechanics 
     ------------------------
@@ -86,7 +86,7 @@ npm test
 
 3.  Heroku Hobby Dyno
 
--   Influences (Brief)
+-   Influences
     ------------------
 
 1.  Starwars
@@ -111,7 +111,7 @@ npm test
     ------------------
 - A space shooter game that only takes a few seconds to start playing, and you can share your score with your friends in an online leaderboard. 
 
--   Project Description (Brief)
+-   Project Description
     ---------------------------
 
 - A JavaScript game made with Phaser 3 Engine that can be played in any web browser as long as there's a keyboard available.
@@ -150,9 +150,9 @@ Story and Gameplay
 -   Story
     -----
 
--  You are part of the Distant Worlds Expedition Unit (DWEU) with the purpose to protect the expeditionaries while they collect data from potential colonial planets in the Oevasy SG-Y d0 system at a distance of 65,647.34 LY from the solar system. Creating an impossible situation to receive supplies or reinforcements in case you find yourself with no ammunition or fuel to continue your mission.
+1.  You are part of the Distant Worlds Expedition Unit (DWEU) with the purpose to protect the expeditionaries while they collect data from potential colonial planets in the Oevasy SG-Y d0 system at a distance of 65,647.34 LY from the solar system. Creating an impossible situation to receive supplies or reinforcements in case you find yourself with no ammunition or fuel to continue your mission.
 
--   Gameplay (Brief)
+-   Gameplay
     ----------------
 
 1.  The player has to survive in three different scenarios with a time set and limited ammunition per scene at the same time scores as many points as it can. 
@@ -182,7 +182,7 @@ Assets Needed
 -   Sound
     -----
 
-1.  Sound List (Ambient)
+1.  Sound List 
 
 -   Laser beams
 
