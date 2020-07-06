@@ -1,11 +1,11 @@
 var score = 0;
 var scoreText;
 var highText;
+var zero = 0;
 
 const highestScore = JSON.parse(localStorage.getItem('highestScore'));
 
 if (highestScore === null) {
-  var zero = 0;
   localStorage.setItem('highestScore', JSON.stringify(zero));
 }
 
@@ -17,6 +17,7 @@ class SceneMain extends Phaser.Scene {
   }
 
   preload() {
+    localStorage.setItem('currentScore', JSON.stringify(zero));
     highText = this.add.text(16, 60, ' ', { fontSize: '16px', fill: '#fff'});
     scoreText = this.add.text(16, 16, ' ', { fontSize: '32px', fill: '#fff'});
 
@@ -187,8 +188,9 @@ class SceneMain extends Phaser.Scene {
   }
 
   update() {
+    const lasthigh = JSON.parse(localStorage.getItem('highestScore'));
     scoreText.setText('Score: ' + score);
-    highText.setText('Highest: ' + highestScore);
+    highText.setText('Highest: ' + lasthigh);
 
     if (!this.player.getData("isDead")) {
       this.player.update();

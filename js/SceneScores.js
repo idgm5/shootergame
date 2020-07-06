@@ -1,37 +1,32 @@
-// async function createGame(name, score) {
-//   const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/mFO8zw10kyIoLrMFk2KV/scores/`, {
-//     method: 'POST',
-//     headers: {
-//       'Accept': 'application/json',
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       "user": name,
-//       "score": score
-//     })
-//   });
-//   const data = await response.json();
-//   return data;
-// }
+async function sendScore(name, score) {
+  const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/mFO8zw10kyIoLrMFk2KV/scores/`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      "user": name,
+      "score": score
+    })
+  });
+  const data = await response.json();
+  console.log("SUCCESS!");
+}
 
-// const generateGame = (name) => {
-//   createGame(name).then((response) => {
-//     console.log(response);
-//     ell;
-//     // localStorage.clear();
-//     // const createGame = new NewGame(name, response.result);
-//     // localStorage.setItem('game', JSON.stringify(createGame));
-//   });
-// };
-
-// const highestScore = JSON.parse(localStorage.getItem('highestScore'));
 const currentScore = JSON.parse(localStorage.getItem('currentScore'));
 
 class SceneScores extends Phaser.Scene {
   constructor() {
-    super({ key: "SceneScores" });
+    super({
+      key: "SceneScores"
+    });
   }
   create() {
+
+    const div = document.createElement('div');
+    div.innerHTML = `<input type='search' placeholder='Name or GamerTag' /><button type='submit' id='button'>Submit</button>`;
+    this.add.dom(this.game.config.width * 0.7, 250, div);
 
     this.title = this.add.text(this.game.config.width * 0.5, 128, "GAME OVER", {
       fontFamily: 'monospace',
@@ -40,29 +35,7 @@ class SceneScores extends Phaser.Scene {
       color: '#ffffff',
       align: 'center'
     });
-
     this.title.setOrigin(0.5);
-
-    this.score = this.add.text(this.game.config.width * 0.5, 128, " ", {
-      fontFamily: 'monospace',
-      fontSize: 48,
-      fontStyle: 'bold',
-      color: '#ffffff',
-      align: 'center'
-    });
-
-    this.score.setOrigin(0.5, -1);
-    this.score.setText('SCORE: ' + currentScore);
-
-    this.high = this.add.text(this.game.config.width * 0.5, 128, " ", {
-      fontFamily: 'monospace',
-      fontSize: 48,
-      fontStyle: 'bold',
-      color: '#ffffff',
-      align: 'center'
-    });
-    this.high.setOrigin(0.5, -4);
-    this.high.setText('HIGHEST: ' + highestScore);
 
     this.sfx = {
       btnOver: this.sound.add("sndBtnOver"),
@@ -103,12 +76,41 @@ class SceneScores extends Phaser.Scene {
       var bg = new ScrollingBackground(this, key, i * 10);
       this.backgrounds.push(bg);
     }
+
+
+
+    // const btn = document.getElementById('button');
+    // btn.onclick = () => sendScore(form[0].value, currentScore);
+
   }
 
   update() {
+    const currentScore = JSON.parse(localStorage.getItem('currentScore'));
+    const lasthigh = JSON.parse(localStorage.getItem('highestScore'));
+
     for (var i = 0; i < this.backgrounds.length; i++) {
       this.backgrounds[i].update();
     }
+    this.score = this.add.text(this.game.config.width * 0.5, 128, " ", {
+      fontFamily: 'monospace',
+      fontSize: 48,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center'
+    });
+
+    this.score.setOrigin(0.5, -1);
+    this.score.setText('SCORE: ' + currentScore);
+
+    this.high = this.add.text(this.game.config.width * 0.5, 128, " ", {
+      fontFamily: 'monospace',
+      fontSize: 48,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center'
+    });
+    this.high.setOrigin(0.5, -4);
+    this.high.setText('HIGHEST: ' + lasthigh);
   }
 
 }
