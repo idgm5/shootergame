@@ -20,6 +20,38 @@ Run  `npm install --global http-server` and then `http-server ./` finally open y
 
 [Pending](#)
 
+## Instructions to run the tests
+
+- Open terminal on your workspace with
+
+```
+cd /home/projects_workspace/..
+```
+
+- Install dependencies
+
+```
+npm install
+```
+
+- Install Jest
+
+```
+npm install --save-dev jest
+```
+
+- Install Babel
+
+```
+npm i -D @babel/preset-env
+```
+
+- Run the tests
+
+```
+npm test
+```
+
 ## Game Design Document
 
 -   Theme / Setting / Genre
@@ -77,12 +109,12 @@ Run  `npm install --global http-server` and then `http-server ./` finally open y
 
 -   The Elevator Pitch
     ------------------
-A space shooter game that only takes a few seconds to start playing, and you can share your score with your friends in an online leaderboard. 
+- A space shooter game that only takes a few seconds to start playing, and you can share your score with your friends in an online leaderboard. 
 
 -   Project Description (Brief)
     ---------------------------
 
-A JavaScript game made with Phaser 3 Engine that can be played in any web browser as long as there's a keyboard available.
+- A JavaScript game made with Phaser 3 Engine that can be played in any web browser as long as there's a keyboard available.
 
 What sets this project apart?
 =============================
@@ -118,7 +150,7 @@ Story and Gameplay
 -   Story
     -----
 
-1.  You are part of the Distant Worlds Expedition Unit (DWEU) with the purpose to protect the expeditionaries while they collect data from potential colonial planets in the Oevasy SG-Y d0 system at a distance of 65,647.34 LY from the solar system. Creating an impossible situation to receive supplies or reinforcements in case you find yourself with no ammunition or fuel to continue your mission.
+-  You are part of the Distant Worlds Expedition Unit (DWEU) with the purpose to protect the expeditionaries while they collect data from potential colonial planets in the Oevasy SG-Y d0 system at a distance of 65,647.34 LY from the solar system. Creating an impossible situation to receive supplies or reinforcements in case you find yourself with no ammunition or fuel to continue your mission.
 
 -   Gameplay (Brief)
     ----------------
@@ -143,7 +175,7 @@ Assets Needed
 
 -   Laser beams
 
-3.  Backgrounds
+2.  Backgrounds
 
 -   Planetary and deep space backgrounds.
 
@@ -189,7 +221,7 @@ Schedule
 -   Base Game Concept
     -----------------
 
-1.  4 hours
+-   4 hours
 
 -   Finish one simple scenario
 
@@ -200,7 +232,7 @@ Schedule
 -   Design Game
     -----------
 
-1.  4 hours
+-   4 hours
 
 -   Add custom textures to the game
 
@@ -211,7 +243,7 @@ Schedule
 -   Story scenes
     ------------
 
-1.  2 hours
+-   2 hours
 
 -   Add an intro about the player's mission. 
 
@@ -222,7 +254,7 @@ Schedule
 -   Submit scores and testing
     -------------------------
 
-1.  8 hours
+-   8 hours
 
 -   Use the API provided to submit scores. 
 
