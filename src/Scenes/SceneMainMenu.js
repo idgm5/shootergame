@@ -61,5 +61,21 @@ export default class SceneMainMenu extends Phaser.Scene {
       align: 'center'
     });
     this.title.setOrigin(0.5);
+
+    const div = document.createElement('div');
+    div.innerHTML = `<button type='submit' id='topscores'
+    style='background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    padding: 0.5rem;
+    margin-left: 3.5rem;
+    text-transform: uppercase;
+    font-weight: bold;'>
+    Top Scores</button>`;
+    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.7, div, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
+
+    const btn = document.getElementById('topscores');
+    btn.onclick = () => this.scene.start("SceneTopScores");
   }
 }
