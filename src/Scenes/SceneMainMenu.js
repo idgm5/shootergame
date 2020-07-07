@@ -6,53 +6,7 @@ export default class SceneMainMenu extends Phaser.Scene {
     super({ key: "SceneMainMenu" });
   }
 
-  preload() {
-    this.load.image("sprBg0", "assets/sprBg0.png");
-    this.load.image("sprBg1", "assets/sprBg1.png");
-    this.load.image("sprBtnPlay", "assets/sprBtnPlay.png");
-    this.load.image("sprBtnPlayHover", "assets/sprBtnPlayHover.png");
-    this.load.image("sprBtnPlayDown", "assets/sprBtnPlayDown.png");
-    this.load.image("sprBtnRestart", "assets/sprBtnRestart.png");
-    this.load.image("sprBtnRestartHover", "assets/sprBtnRestartHover.png");
-    this.load.image("sprBtnRestartDown", "assets/sprBtnRestartDown.png");
-    this.load.audio("sndBtnOver", "assets/sndBtnOver.wav");
-    this.load.audio("sndBtnDown", "assets/sndBtnDown.wav");
-  }
-
   create() {
-    this.sfx = {
-      btnOver: this.sound.add("sndBtnOver"),
-      btnDown: this.sound.add("sndBtnDown")
-    };
-
-    this.btnPlay = this.add.sprite(
-      this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
-      "sprBtnPlay"
-    );
-
-    this.btnPlay.setInteractive();
-
-    this.btnPlay.on("pointerover", function() {
-      this.btnPlay.setTexture("sprBtnPlayHover"); // set the button texture to sprBtnPlayHover
-      this.sfx.btnOver.play(); // play the button over sound
-    }, this);
-
-    this.btnPlay.on("pointerout", function() {
-      this.setTexture("sprBtnPlay");
-    });
-
-    this.btnPlay.on("pointerdown", function() {
-      this.btnPlay.setTexture("sprBtnPlayDown");
-      this.sfx.btnDown.play();
-    }, this);
-
-
-    this.btnPlay.on("pointerup", function() {
-      this.btnPlay.setTexture("sprBtnPlay");
-      this.scene.start("SceneMain");
-    }, this);
-
     this.title = this.add.text(this.game.config.width * 0.5, 128, "SPACE TROOPER", {
       fontFamily: 'monospace',
       fontSize: 48,
@@ -62,8 +16,21 @@ export default class SceneMainMenu extends Phaser.Scene {
     });
     this.title.setOrigin(0.5);
 
-    const div = document.createElement('div');
-    div.innerHTML = `<button type='submit' id='topscores'
+    const play = document.createElement('div');
+    play.innerHTML = `<button type='submit' id='play'
+    style='background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    padding: 0.5rem;
+    margin-left: 3.5rem;
+    text-transform: uppercase;
+    font-weight: bold;'>
+    Start Game</button>`;
+    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.5, play, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
+
+    const top = document.createElement('div');
+    top.innerHTML = `<button type='submit' id='topscores'
     style='background-color: transparent;
     border: 2px solid white;
     border-radius: 5px;
@@ -73,9 +40,12 @@ export default class SceneMainMenu extends Phaser.Scene {
     text-transform: uppercase;
     font-weight: bold;'>
     Top Scores</button>`;
-    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.7, div, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
+    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.7, top, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
 
-    const btn = document.getElementById('topscores');
-    btn.onclick = () => this.scene.start("SceneTopScores");
+    const topBtn = document.getElementById('topscores');
+    const playBtn = document.getElementById('play');
+
+    playBtn.onclick = () => this.scene.start("SceneMain");
+    topBtn.onclick = () => this.scene.start("SceneTopScores");
   }
 }

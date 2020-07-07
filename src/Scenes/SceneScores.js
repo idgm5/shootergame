@@ -42,38 +42,6 @@ export default class SceneScores extends Phaser.Scene {
     });
     this.title.setOrigin(0.5);
 
-    this.sfx = {
-      btnOver: this.sound.add("sndBtnOver"),
-      btnDown: this.sound.add("sndBtnDown")
-    };
-
-    this.btnRestart = this.add.sprite(
-      this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
-      "sprBtnRestart"
-    );
-
-    this.btnRestart.setInteractive();
-
-    this.btnRestart.on("pointerover", function() {
-      this.btnRestart.setTexture("sprBtnRestartHover"); // set the button texture to sprBtnPlayHover
-      this.sfx.btnOver.play(); // play the button over sound
-    }, this);
-
-    this.btnRestart.on("pointerout", function() {
-      this.setTexture("sprBtnRestart");
-    });
-
-    this.btnRestart.on("pointerdown", function() {
-      this.btnRestart.setTexture("sprBtnRestartDown");
-      this.sfx.btnDown.play();
-    }, this);
-
-    this.btnRestart.on("pointerup", function() {
-      this.btnRestart.setTexture("sprBtnRestart");
-      this.scene.start("SceneMain");
-    }, this);
-
     const div = document.createElement('div');
     div.innerHTML = `<input type='search' placeholder='Write your name' id='tag'
     style="background: transparent;
@@ -90,11 +58,11 @@ export default class SceneScores extends Phaser.Scene {
     text-transform: uppercase;
     font-weight: bold;'>
     Send Score</button>`;
-    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.7, div, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
+    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.6, div, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
 
     const btn = document.getElementById('button');
     var name = document.getElementById('tag');
-    btn.onclick = () => sendScore(tag.value, currentScore);
+    btn.onclick = () => sendScore(tag.value, currentScore).then(this.scene.start("SceneMainMenu"));
 
     const currentScore = JSON.parse(localStorage.getItem('currentScore'));
     const lasthigh = JSON.parse(localStorage.getItem('highestScore'));
@@ -110,14 +78,13 @@ export default class SceneScores extends Phaser.Scene {
     this.score.setOrigin(0.5, -1);
     this.score.setText('SCORE: ' + currentScore);
 
-    this.high = this.add.text(this.game.config.width * 0.5, 128, " ", {
+    this.high = this.add.text(this.game.config.width * 0.15, this.game.config.height * 0.4, " ", {
       fontFamily: 'monospace',
       fontSize: 48,
       fontStyle: 'bold',
       color: '#ffffff',
       align: 'center'
     });
-    this.high.setOrigin(0.5, -4);
     this.high.setText('HIGHEST: ' + lasthigh);
 
   }
