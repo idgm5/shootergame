@@ -1,5 +1,12 @@
 import 'phaser';
-import { Player, NewScore, PlayerLaser, ChaserShip, GunShip, CarrierShip} from '../entities';
+import {
+  Player,
+  NewScore,
+  PlayerLaser,
+  ChaserShip,
+  GunShip,
+  CarrierShip
+} from '../entities';
 
 var score = 0;
 var scoreText;
@@ -21,11 +28,9 @@ export default class SceneMain extends Phaser.Scene {
   }
 
   preload() {
-    localStorage.setItem('currentScore', JSON.stringify(zero));
-    highText = this.add.text(16, 60, ' ', { fontSize: '16px', fill: '#fff'});
-    scoreText = this.add.text(16, 16, ' ', { fontSize: '32px', fill: '#fff'});
+    this.load.image('deepspace', 'assets/Background-1.png');
 
-    timerText = this.add.text(16, 100, ' ', { fontSize: '16px', fill: '#fff'});
+    localStorage.setItem('currentScore', JSON.stringify(zero));
 
     this.load.image('deepspace', 'assets/Background-1.png')
 
@@ -55,16 +60,21 @@ export default class SceneMain extends Phaser.Scene {
   }
 
   create() {
-  //  this.add.image(400, 300, 'deepspace');
-  //Add timer
-  // var sec = 5;
-  // var timer = setInterval(function(){
-  //     timerText.setText('Time Left: ' + sec);
-  //     sec--;
-  //     if (sec < 0) {
-  //         onSecondStage();
-  //     }
-  // }, 1000);
+    this.bg = this.add.image(400, 300, 'deepspace');
+
+    highText = this.add.text(16, 60, ' ', {
+      fontSize: '16px',
+      fill: '#fff'
+    });
+    scoreText = this.add.text(16, 16, ' ', {
+      fontSize: '32px',
+      fill: '#fff'
+    });
+
+    timerText = this.add.text(40, 16, ' ', {
+      fontSize: '16px',
+      fill: '#fff'
+    });
 
     this.anims.create({
       key: "sprEnemy0",
@@ -163,7 +173,7 @@ export default class SceneMain extends Phaser.Scene {
         playerLaser.destroy();
         score += 1;
         localStorage.setItem('currentScore', JSON.stringify(score));
-        if(score > parseInt(highestScore)){
+        if (score > parseInt(highestScore)) {
           localStorage.setItem('highestScore', JSON.stringify(score));
         }
       }
@@ -186,6 +196,24 @@ export default class SceneMain extends Phaser.Scene {
         laser.destroy();
       }
     });
+
+    const nextScene = () => this.scene.start("SceneScores");
+
+    const lasthigh = JSON.parse(localStorage.getItem('highestScore'));
+    scoreText.setText('Score: ' + score);
+    highText.setText('Highest: ' + lasthigh);
+
+    //Add timer
+    var sec = 60;
+    var timer = setInterval(function() {
+      timerText.setText('Time Left: ' + sec);
+      sec--;
+      if (sec < 0) {
+        nextScene();
+        sec = 9999999999999999999999;
+      }
+    }, 1000);
+
   }
 
   getEnemiesByType(type) {
@@ -201,12 +229,6 @@ export default class SceneMain extends Phaser.Scene {
 
 
   update() {
-    const lasthigh = JSON.parse(localStorage.getItem('highestScore'));
-    scoreText.setText('Score: ' + score);
-    highText.setText('Highest: ' + lasthigh);
-
-
-
     if (!this.player.getData("isDead")) {
       this.player.update();
       if (this.keyW.isDown) {
