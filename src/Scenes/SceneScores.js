@@ -28,6 +28,11 @@ export default class SceneScores extends Phaser.Scene {
 
   create() {
 
+    this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.W);
+    this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.S);
+    this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.A);
+    this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.D);
+
     this.title = this.add.text(this.game.config.width * 0.5, 128, "GAME OVER", {
       fontFamily: 'monospace',
       fontSize: 48,
@@ -70,12 +75,26 @@ export default class SceneScores extends Phaser.Scene {
     }, this);
 
     const div = document.createElement('div');
-    div.innerHTML = `<input type='search' placeholder='Name or GamerTag' /><button type='submit' id='button'>Submit</button>`;
-    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.5, div, 'background-color: lime; width: 220px; height: 100px; font: 48px Arial');
+    div.innerHTML = `<input type='search' placeholder='Write your name' id='tag'
+    style="background: transparent;
+    color: white;
+    border: 2px solid;
+    padding: 0.5rem;"/>
+    <button type='submit' id='button'
+    style='background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    padding: 0.5rem;
+    margin-left: 3.5rem;
+    text-transform: uppercase;
+    font-weight: bold;'>
+    Send Score</button>`;
+    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.7, div, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
 
-
-    // const btn = document.getElementById('button');
-    // btn.onclick = () => sendScore(form[0].value, currentScore);
+    const btn = document.getElementById('button');
+    var name = document.getElementById('tag');
+    btn.onclick = () => sendScore(tag.value, currentScore);
 
     const currentScore = JSON.parse(localStorage.getItem('currentScore'));
     const lasthigh = JSON.parse(localStorage.getItem('highestScore'));
@@ -102,9 +121,4 @@ export default class SceneScores extends Phaser.Scene {
     this.high.setText('HIGHEST: ' + lasthigh);
 
   }
-
-  // update() {
-  //
-  // }
-
 }

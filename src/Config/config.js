@@ -5,8 +5,9 @@ export default {
   width: 480,
   height: 640,
   backgroundColor: "black",
+  parent: "main-container",
   dom: {
-    createContainer: true
+    createContainer: true,
   },
   physics: {
     default: "arcade",
@@ -14,11 +15,6 @@ export default {
       gravity: { x: 0, y: 0 }
     }
   },
-  scene: [
-    SceneMainMenu,
-    SceneMain,
-    SceneScores
-  ],
   pixelArt: true,
   roundPixels: true
 };
