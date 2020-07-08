@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A Phaser 3 Space Shooter Game",
   "main": "src/index.js",
-  "type": "module",
   "scripts": {
     "build": "webpack",
     "start": "npm run build && webpack-dev-server --port=8000"
