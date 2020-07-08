@@ -13,7 +13,7 @@ async function getScores() {
   return data;
 }
 
-const allScores = getScores();
+  let allScores;
 
 export default class SceneTopScores extends Phaser.Scene {
   constructor() {
@@ -23,6 +23,8 @@ export default class SceneTopScores extends Phaser.Scene {
   }
 
   create() {
+    allScores = getScores();
+
     this.bg = this.add.image(240,320, 'deepspace-menu');
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.W);
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.S);

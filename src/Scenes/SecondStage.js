@@ -176,7 +176,7 @@ export default class SecondStage extends Phaser.Scene {
         player.explode(false);
         player.onDestroy();
         enemy.explode(true);
-        sec = 9999999;
+        stopTimer();
       }
     });
 
@@ -186,22 +186,26 @@ export default class SecondStage extends Phaser.Scene {
         player.explode(false);
         player.onDestroy();
         laser.destroy();
-        sec = 9999999;
+        stopTimer();
       }
     });
 
     const thirdStage = () => this.scene.start("ThirdStage");
 
-    sec = 60;
+    sec = 10;
     //Add timer
     var timer = setInterval(function() {
       timerText.setText('Time Left: ' + sec);
       sec--;
       if (sec < 0) {
           thirdStage();
-          sec = 99999999999;
+          stopTimer();
         }
     }, 1000);
+
+    function stopTimer() {
+      clearInterval(timer);
+    }
 
   }
 
