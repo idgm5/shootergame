@@ -23,5 +23,8 @@
     "raw-loader": "^0.5.1",
     "phaser": "^3.3.0",
     "canvas": "^2.1.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
