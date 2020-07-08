@@ -1,5 +1,5 @@
 {
-  "name": "Star Trooper",
+  "name": "StarTrooper",
   "version": "1.0.0",
   "description": "A Phaser 3 Space Shooter Game",
   "main": "src/index.js",
