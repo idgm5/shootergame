@@ -13,6 +13,7 @@ var scoreText;
 var highText;
 var timerText;
 var stageText;
+var ammoText;
 var zero = 0;
 var sec = 0;
 
@@ -76,6 +77,11 @@ export default class SecondStage extends Phaser.Scene {
     });
 
     timerText = this.add.text(350, 60, ' ', {
+      fontSize: '16px',
+      fill: '#fff'
+    });
+
+    ammoText = this.add.text(320, 90, ' ', {
       fontSize: '16px',
       fill: '#fff'
     });
@@ -205,7 +211,7 @@ export default class SecondStage extends Phaser.Scene {
 
     const thirdStage = () => this.scene.start("ThirdStage");
 
-    sec = 10;
+    sec = 60;
     //Add timer
     var timer = setInterval(function() {
       timerText.setText('Time Left: ' + sec);
@@ -232,8 +238,16 @@ export default class SecondStage extends Phaser.Scene {
 
   update() {
     const lasthigh = JSON.parse(localStorage.getItem('highestScore'));
-    scoreText.setText('Score: ' + score);
+    const currentAmmo = JSON.parse(localStorage.getItem('Ammunition'));
+
     highText.setText('Highest: ' + lasthigh);
+    scoreText.setText('Score: ' + score);
+    ammoText.setText('Ammunition: ' + currentAmmo);
+
+    if(currentAmmo < zero){
+      this.player.onDestroy();
+      sec = 99999999999;
+    }
 
     if (!this.player.getData("isDead")) {
       this.player.update();

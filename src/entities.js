@@ -1,3 +1,5 @@
+var ammunition = 100;
+
 export class Entity extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, key, type) {
     super(scene, x, y, key);
@@ -104,6 +106,8 @@ export class Player extends Entity {
 
         this.scene.sfx.laser.play(); // play the laser sound effect
         this.setData("timerShootTick", 0);
+        ammunition--;
+        localStorage.setItem('Ammunition', JSON.stringify(ammunition));
       }
     }
   }
