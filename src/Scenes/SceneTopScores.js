@@ -23,7 +23,7 @@ export default class SceneTopScores extends Phaser.Scene {
   }
 
   create() {
-    this.bg = this.add.image(240,320, 'deepspace-menu');  
+    this.bg = this.add.image(240,320, 'deepspace-menu');
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.W);
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.S);
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.A);
@@ -49,7 +49,7 @@ export default class SceneTopScores extends Phaser.Scene {
     text-transform: uppercase;
     font-weight: bold;'>
     Back To Menu</button>`;
-    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.8, div, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
+    this.add.dom(this.game.config.width * 0.45, this.game.config.height * 0.8, div, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
 
     const btn = document.getElementById('backtomenu');
     btn.onclick = () => this.scene.start("SceneMainMenu");
@@ -61,7 +61,7 @@ export default class SceneTopScores extends Phaser.Scene {
       results.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
       var height = 0.3;
       results.slice(0, 5).forEach((result) => {
-        this.add.text(this.game.config.width * 0.35, this.game.config.height * height, `${result.user}: ${result.score}`, {
+        this.add.text(this.game.config.width * 0.3, this.game.config.height * height, `${result.user}: ${result.score}`, {
           fontFamily: 'monospace',
           fontSize: 32,
           fontStyle: 'bold',

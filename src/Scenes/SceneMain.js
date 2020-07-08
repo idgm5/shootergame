@@ -64,7 +64,7 @@ export default class SceneMain extends Phaser.Scene {
   create() {
     localStorage.setItem('Ammunition', JSON.stringify(ammunition));
 
-    this.bg = this.add.image(240,320, 'deepspace');
+    this.bg = this.add.image(240, 320, 'deepspace');
 
     stageText = this.add.text(290, 16, 'First Stage', {
       fontSize: '32px',
@@ -85,7 +85,7 @@ export default class SceneMain extends Phaser.Scene {
       fill: '#fff'
     });
 
-    ammoText = this.add.text(320, 90, ' ', {
+    ammoText = this.add.text(330, 90, ' ', {
       fontSize: '16px',
       fill: '#fff'
     });
@@ -117,10 +117,16 @@ export default class SceneMain extends Phaser.Scene {
 
     this.sfx = {
       explosions: [
-        this.sound.add("sndExplode0"),
-        this.sound.add("sndExplode1")
+        this.sound.add("sndExplode0", {
+          volume: 0.01,
+        }),
+        this.sound.add("sndExplode1", {
+          volume: 0.01,
+        })
       ],
-      laser: this.sound.add("sndLaser")
+      laser: this.sound.add("sndLaser", {
+        volume: 0.01,
+      })
     };
 
     this.player = new Player(
@@ -216,15 +222,15 @@ export default class SceneMain extends Phaser.Scene {
     const nextScene = () => this.scene.start("SceneScores");
     const secondStage = () => this.scene.start("SecondStage");
 
-    sec = 60;
+    sec = 10;
     //Add timer
     var timer = setInterval(function() {
       timerText.setText('Time Left: ' + sec);
       sec--;
       if (sec < 0) {
-          secondStage();
-          sec = 99999999999;
-        }
+        secondStage();
+        sec = 99999999999;
+      }
     }, 1000);
 
   }
@@ -249,7 +255,7 @@ export default class SceneMain extends Phaser.Scene {
     scoreText.setText('Score: ' + score);
     ammoText.setText('Ammunition: ' + currentAmmo);
 
-    if(currentAmmo < zero){
+    if (currentAmmo < zero) {
       this.player.onDestroy();
       sec = 99999999999;
     }

@@ -31,32 +31,7 @@ export default class ThirdStage extends Phaser.Scene {
   }
 
   preload() {
-
     this.load.image('deepspace-3', 'assets/Background-4.png')
-
-    this.load.spritesheet("sprExplosion", "assets/sprExplosion.png", {
-      frameWidth: 32,
-      frameHeight: 32
-    });
-    this.load.spritesheet("sprEnemy0", "assets/sprEnemy0.png", {
-      frameWidth: 16,
-      frameHeight: 16
-    });
-    this.load.image("sprEnemy1", "assets/sprEnemy1.png");
-    this.load.spritesheet("sprEnemy2", "assets/sprEnemy2.png", {
-      frameWidth: 16,
-      frameHeight: 16
-    });
-    this.load.image("sprLaserEnemy0", "assets/sprLaserEnemy0.png");
-    this.load.image("sprLaserPlayer", "assets/sprLaserPlayer.png");
-    this.load.spritesheet("sprPlayer", "assets/sprPlayer.png", {
-      frameWidth: 16,
-      frameHeight: 16
-    });
-
-    this.load.audio("sndExplode0", "assets/sndExplode0.wav");
-    this.load.audio("sndExplode1", "assets/sndExplode1.wav");
-    this.load.audio("sndLaser", "assets/sndLaser.wav");
   }
 
   create() {
@@ -81,7 +56,7 @@ export default class ThirdStage extends Phaser.Scene {
       fill: '#fff'
     });
 
-    ammoText = this.add.text(320, 90, ' ', {
+    ammoText = this.add.text(330, 90, ' ', {
       fontSize: '16px',
       fill: '#fff'
     });
@@ -113,12 +88,17 @@ export default class ThirdStage extends Phaser.Scene {
 
     this.sfx = {
       explosions: [
-        this.sound.add("sndExplode0"),
-        this.sound.add("sndExplode1")
+        this.sound.add("sndExplode0", {
+          volume: 0.01,
+        }),
+        this.sound.add("sndExplode1", {
+          volume: 0.01,
+        })
       ],
-      laser: this.sound.add("sndLaser")
+      laser: this.sound.add("sndLaser", {
+        volume: 0.01,
+      })
     };
-
     this.player = new Player(
       this,
       this.game.config.width * 0.5,
