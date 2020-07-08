@@ -26,7 +26,8 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "build": "webpack"
+    "build": "webpack",
+    "type": "module"
   },
   "heroku-run-build-script": true
 }
