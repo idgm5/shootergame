@@ -66,7 +66,7 @@ export default class SceneMain extends Phaser.Scene {
 
     this.bg = this.add.image(240, 320, 'deepspace');
 
-    stageText = this.add.text(290, 16, 'First Stage', {
+    stageText = this.add.text(250, 16, 'First Stage', {
       fontSize: '32px',
       fill: '#fff',
     });

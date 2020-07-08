@@ -38,7 +38,6 @@ export default class SceneIntro extends Phaser.Scene {
     <br/>
     I wish you good luck on your mission, and god bless the federation with your success.
     <br/>
-    <br/>
     John Cruze,
     <br/>
     Rear Admiral Of The Federation
