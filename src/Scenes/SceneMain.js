@@ -12,7 +12,9 @@ var score = 0;
 var scoreText;
 var highText;
 var timerText;
+var stageText;
 var zero = 0;
+var sec = 0;
 
 const highestScore = JSON.parse(localStorage.getItem('highestScore'));
 
@@ -28,8 +30,6 @@ export default class SceneMain extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('deepspace', 'assets/Background-1.png');
-
     localStorage.setItem('currentScore', JSON.stringify(zero));
 
     this.load.image('deepspace', 'assets/Background-1.png')
@@ -60,7 +60,12 @@ export default class SceneMain extends Phaser.Scene {
   }
 
   create() {
-    this.bg = this.add.image(400, 300, 'deepspace');
+    this.bg = this.add.image(240,320, 'deepspace');
+
+    stageText = this.add.text(290, 16, 'First Stage', {
+      fontSize: '32px',
+      fill: '#fff',
+    });
 
     highText = this.add.text(16, 60, ' ', {
       fontSize: '16px',
@@ -71,7 +76,7 @@ export default class SceneMain extends Phaser.Scene {
       fill: '#fff'
     });
 
-    timerText = this.add.text(40, 16, ' ', {
+    timerText = this.add.text(350, 60, ' ', {
       fontSize: '16px',
       fill: '#fff'
     });
@@ -185,6 +190,7 @@ export default class SceneMain extends Phaser.Scene {
         player.explode(false);
         player.onDestroy();
         enemy.explode(true);
+        sec = 9999999;
       }
     });
 
@@ -194,24 +200,22 @@ export default class SceneMain extends Phaser.Scene {
         player.explode(false);
         player.onDestroy();
         laser.destroy();
+        sec = 9999999;
       }
     });
 
     const nextScene = () => this.scene.start("SceneScores");
+    const secondStage = () => this.scene.start("SecondStage");
 
-    const lasthigh = JSON.parse(localStorage.getItem('highestScore'));
-    scoreText.setText('Score: ' + score);
-    highText.setText('Highest: ' + lasthigh);
-
+    sec = 10;
     //Add timer
-    var sec = 60;
     var timer = setInterval(function() {
       timerText.setText('Time Left: ' + sec);
       sec--;
       if (sec < 0) {
-        nextScene();
-        sec = 9999999999999999999999;
-      }
+          secondStage();
+          sec = 99999999999;
+        }
     }, 1000);
 
   }
@@ -229,6 +233,10 @@ export default class SceneMain extends Phaser.Scene {
 
 
   update() {
+    const lasthigh = JSON.parse(localStorage.getItem('highestScore'));
+    highText.setText('Highest: ' + lasthigh);
+    scoreText.setText('Score: ' + score);
+
     if (!this.player.getData("isDead")) {
       this.player.update();
       if (this.keyW.isDown) {

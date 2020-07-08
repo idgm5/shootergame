@@ -23,7 +23,7 @@ export default class SceneTopScores extends Phaser.Scene {
   }
 
   create() {
-
+    this.bg = this.add.image(240,320, 'deepspace-menu');  
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.W);
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.S);
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.A);
@@ -37,22 +37,6 @@ export default class SceneTopScores extends Phaser.Scene {
       align: 'center'
     });
     this.title.setOrigin(0.5);
-
-    allScores.then((response) => {
-      var results = response.result;
-      results.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
-      var height = 0.3;
-      results.slice(0, 5).forEach((result) => {
-        this.add.text(this.game.config.width * 0.35, this.game.config.height * height, `${result.user}: ${result.score}`, {
-          fontFamily: 'monospace',
-          fontSize: 32,
-          fontStyle: 'bold',
-          color: '#ffffff',
-          align: 'center'
-        });
-        height += 0.1;
-      });
-    });
 
     const div = document.createElement('div');
     div.innerHTML = `<button type='submit' id='backtomenu'
@@ -69,5 +53,23 @@ export default class SceneTopScores extends Phaser.Scene {
 
     const btn = document.getElementById('backtomenu');
     btn.onclick = () => this.scene.start("SceneMainMenu");
+  }
+
+  update(){
+    allScores.then((response) => {
+      var results = response.result;
+      results.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
+      var height = 0.3;
+      results.slice(0, 5).forEach((result) => {
+        this.add.text(this.game.config.width * 0.35, this.game.config.height * height, `${result.user}: ${result.score}`, {
+          fontFamily: 'monospace',
+          fontSize: 32,
+          fontStyle: 'bold',
+          color: '#ffffff',
+          align: 'center'
+        });
+        height += 0.1;
+      });
+    });
   }
 }

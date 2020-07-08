@@ -1,12 +1,18 @@
 import 'phaser';
 
-
 export default class SceneMainMenu extends Phaser.Scene {
   constructor() {
-    super({ key: "SceneMainMenu" });
+    super({
+      key: "SceneMainMenu"
+    });
+  }
+
+  preload() {
+    this.load.image('deepspace-menu', 'assets/Background-3.png')
   }
 
   create() {
+    this.bg = this.add.image(240,320, 'deepspace-menu');
     this.title = this.add.text(this.game.config.width * 0.5, 128, "SPACE TROOPER", {
       fontFamily: 'monospace',
       fontSize: 48,
@@ -27,7 +33,7 @@ export default class SceneMainMenu extends Phaser.Scene {
     text-transform: uppercase;
     font-weight: bold;'>
     Start Game</button>`;
-    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.5, play, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
+    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.4, play, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
 
     const top = document.createElement('div');
     top.innerHTML = `<button type='submit' id='topscores'
@@ -40,7 +46,7 @@ export default class SceneMainMenu extends Phaser.Scene {
     text-transform: uppercase;
     font-weight: bold;'>
     Top Scores</button>`;
-    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.7, top, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
+    this.add.dom(this.game.config.width * 0.5, this.game.config.height * 0.55, top, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
 
     const topBtn = document.getElementById('topscores');
     const playBtn = document.getElementById('play');
