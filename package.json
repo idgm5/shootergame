@@ -25,9 +25,5 @@
     "webpack": "^3.12.0",
     "webpack-dev-server": "^2.11.0"
   },
-  "scripts": {
-    "start": "node --experimental-modules src/index.js",
-    "build": "webpack"
-  },
   "heroku-run-build-script": true
 }
