@@ -1,4 +1,5 @@
-# shootergame - development
+# Space Trooper
+A space shooter game that only takes a few seconds to start playing, which also allows you to share your score with your friends in an online leader board.
 
 ## Instructions to run the project
 
