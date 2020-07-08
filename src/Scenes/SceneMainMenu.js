@@ -51,7 +51,7 @@ export default class SceneMainMenu extends Phaser.Scene {
     const topBtn = document.getElementById('topscores');
     const playBtn = document.getElementById('play');
 
-    playBtn.onclick = () => this.scene.start("SceneMain");
+    playBtn.onclick = () => this.scene.start("SceneIntro");
     topBtn.onclick = () => this.scene.start("SceneTopScores");
   }
 }
