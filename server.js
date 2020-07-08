@@ -2,7 +2,7 @@ var express = require('express');
 var http = require('http');
 var app = express();
 
-app.use(express.static('public'));
+app.use(express.static('src'));
 app.get('/', function(request, response){
     response.send('Game running');
 });
