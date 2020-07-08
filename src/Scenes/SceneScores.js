@@ -17,7 +17,9 @@ async function sendScore(name, score) {
   console.log("SUCCESS!");
 }
 
+var zero = 0;
 const currentScore = JSON.parse(localStorage.getItem('currentScore'));
+const leftAmmo = JSON.parse(localStorage.getItem('Ammunition'));
 
 export default class SceneScores extends Phaser.Scene {
   constructor() {
@@ -32,14 +34,26 @@ export default class SceneScores extends Phaser.Scene {
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.A);
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.D);
 
-    this.title = this.add.text(this.game.config.width * 0.5, 128, "GAME OVER", {
-      fontFamily: 'monospace',
-      fontSize: 48,
-      fontStyle: 'bold',
-      color: '#ffffff',
-      align: 'center'
-    });
-    this.title.setOrigin(0.5);
+    if(leftAmmo <= zero){
+      this.title = this.add.text(this.game.config.width * 0.5, 128, "NO AMMO LEFT", {
+        fontFamily: 'monospace',
+        fontSize: 48,
+        fontStyle: 'bold',
+        color: '#ffffff',
+        align: 'center'
+      });
+      this.title.setOrigin(0.5);
+    } else {
+      this.title = this.add.text(this.game.config.width * 0.5, 128, "GAME OVER", {
+        fontFamily: 'monospace',
+        fontSize: 48,
+        fontStyle: 'bold',
+        color: '#ffffff',
+        align: 'center'
+      });
+      this.title.setOrigin(0.5);
+    }
+
 
     const div = document.createElement('div');
     div.innerHTML = `<input type='search' placeholder='Write your name' id='tag'
