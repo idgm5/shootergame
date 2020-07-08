@@ -18,7 +18,10 @@ Run  `npm install --global http-server` and then `http-server ./` finally open y
 
 ## Demo
 
-[Pending](#)
+[Hosted on Heroku](http://startrooper.herokuapp.com/)
+
+## Screenshot
+![image](https://i.imgur.com/37lduuC.png)
 
 ## Instructions to run the tests
 
@@ -182,7 +185,7 @@ Assets Needed
 -   Sound
     -----
 
-1.  Sound List 
+1.  Sound List
 
 -   Laser beams
 
