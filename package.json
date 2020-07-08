@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A Phaser 3 Space Shooter Game",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "build": "webpack",
     "start": "npm run build && webpack-dev-server --port=8000"
@@ -25,9 +26,8 @@
     "webpack-dev-server": "^2.11.0"
   },
   "scripts": {
-    "start": "node src/index.js",
-    "build": "webpack",
-    "type": "module"
+    "start": "node --experimental-modules src/index.js",
+    "build": "webpack"
   },
   "heroku-run-build-script": true
 }
