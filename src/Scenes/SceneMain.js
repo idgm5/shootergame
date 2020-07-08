@@ -222,7 +222,7 @@ export default class SceneMain extends Phaser.Scene {
     const nextScene = () => this.scene.start("SceneScores");
     const secondStage = () => this.scene.start("SecondStage");
 
-    sec = 10;
+    sec = 60;
     //Add timer
     var timer = setInterval(function() {
       timerText.setText('Time Left: ' + sec);

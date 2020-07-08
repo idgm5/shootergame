@@ -192,7 +192,7 @@ export default class SecondStage extends Phaser.Scene {
 
     const thirdStage = () => this.scene.start("ThirdStage");
 
-    sec = 10;
+    sec = 60;
     //Add timer
     var timer = setInterval(function() {
       timerText.setText('Time Left: ' + sec);
