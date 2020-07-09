@@ -8,8 +8,9 @@ import SecondStage from './Scenes/SecondStage';
 import ThirdStage from './Scenes/ThirdStage';
 import SceneIntro from './Scenes/SceneIntro';
 
+let Phaser;
 class Game extends Phaser.Game {
-  constructor () {
+  constructor() {
     super(config);
     this.scene.add('SceneIntro', SceneIntro);
     this.scene.add('ThirdStage', ThirdStage);

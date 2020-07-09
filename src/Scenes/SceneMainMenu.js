@@ -1,24 +1,26 @@
+/* eslint-disable no-undef */
+
 import 'phaser';
 
 export default class SceneMainMenu extends Phaser.Scene {
   constructor() {
     super({
-      key: "SceneMainMenu"
+      key: 'SceneMainMenu',
     });
   }
 
   preload() {
-    this.load.image('deepspace-menu', 'assets/Background-3.png')
+    this.load.image('deepspace-menu', 'assets/Background-3.png');
   }
 
   create() {
-    this.bg = this.add.image(240,320, 'deepspace-menu');
-    this.title = this.add.text(this.game.config.width * 0.5, 128, "SPACE TROOPER", {
+    this.bg = this.add.image(240, 320, 'deepspace-menu');
+    this.title = this.add.text(this.game.config.width * 0.5, 128, 'SPACE TROOPER', {
       fontFamily: 'monospace',
       fontSize: 48,
       fontStyle: 'bold',
       color: '#ffffff',
-      align: 'center'
+      align: 'center',
     });
     this.title.setOrigin(0.5);
 
@@ -51,7 +53,7 @@ export default class SceneMainMenu extends Phaser.Scene {
     const topBtn = document.getElementById('topscores');
     const playBtn = document.getElementById('play');
 
-    playBtn.onclick = () => this.scene.start("SceneIntro");
-    topBtn.onclick = () => this.scene.start("SceneTopScores");
+    playBtn.onclick = () => this.scene.start('SceneIntro');
+    topBtn.onclick = () => this.scene.start('SceneTopScores');
   }
 }

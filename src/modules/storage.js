@@ -32,7 +32,7 @@ const Storage = (() => {
     highScore,
     getHighScore,
     setAmmo,
-    currentAmmo
+    currentAmmo,
   };
 })();
 
