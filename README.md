@@ -1,6 +1,5 @@
 # Star Trooper
-A space shooter game that only takes a few seconds to start playing, which also allows you to share your score with your friends in an online leader board.
-
+A space shooter game made with Phaser 3, only takes a few seconds to start playing in your web browser, and share your score with your friends in an online leaderboard.
 ## Instructions to run the project
 
 + Open terminal on your workspace with
