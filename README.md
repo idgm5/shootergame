@@ -15,7 +15,7 @@ git clone git@github.com:idgm5/shootergame.git
 ```
 cd /shootergame/
 ```
-Run  `npm install --global http-server` and then `http-server ./` finally open your web browser at `http://localhost:8080/`
+Run  `npm install` and then `npm run start` finally open your web browser at `http://localhost:8000/`
 
 ## Quick starting Guide
 + MOVE UP: Press [W] key
