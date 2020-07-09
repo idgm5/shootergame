@@ -1,19 +1,7 @@
 import 'phaser';
 import config from '../Config/config';
-
-async function getScores() {
-  const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/mFO8zw10kyIoLrMFk2KV/scores/`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  });
-  const data = await response.json();
-  return data;
-}
-
-  let allScores;
+const GetScore = require('../modules/getScore');
+let allScores;
 
 export default class SceneTopScores extends Phaser.Scene {
   constructor() {
@@ -23,7 +11,7 @@ export default class SceneTopScores extends Phaser.Scene {
   }
 
   create() {
-    allScores = getScores();
+    allScores = GetScore.all();
 
     this.bg = this.add.image(240,320, 'deepspace-menu');
     this.input.keyboard.removeCapture(Phaser.Input.Keyboard.KeyCodes.W);

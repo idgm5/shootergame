@@ -1,24 +1,9 @@
 import 'phaser';
 import config from '../Config/config';
-
-async function sendScore(name, score) {
-  const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/mFO8zw10kyIoLrMFk2KV/scores/`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      "user": name,
-      "score": score
-    })
-  });
-  const data = await response.json();
-  console.log("SUCCESS!");
-}
+const SubmitScore = require('../modules/submitScore');
+const Storage = require('../modules/storage');
 
 var zero = 0;
-const currentScore = JSON.parse(localStorage.getItem('currentScore'));;
 
 export default class SceneScores extends Phaser.Scene {
   constructor() {
@@ -53,10 +38,10 @@ export default class SceneScores extends Phaser.Scene {
 
     const btn = document.getElementById('button');
     var name = document.getElementById('tag');
-    btn.onclick = () => sendScore(tag.value, currentScore).then(this.scene.start("SceneMainMenu"));
+    btn.onclick = () => SubmitScore.send(tag.value, currentScore).then(this.scene.start("SceneMainMenu"));
 
-    const currentScore = JSON.parse(localStorage.getItem('currentScore'));
-    const lasthigh = JSON.parse(localStorage.getItem('highestScore'));
+    const currentScore = Storage.getCurrentScore();
+    const lasthigh = Storage.getHighScore();
 
     this.score = this.add.text(this.game.config.width * 0.5, 128, " ", {
       fontFamily: 'monospace',
@@ -81,7 +66,7 @@ export default class SceneScores extends Phaser.Scene {
   }
 
   update(){
-    const leftAmmo = JSON.parse(localStorage.getItem('Ammunition'))
+    const leftAmmo = Storage.currentAmmo();
     if(leftAmmo <= zero){
       this.title = this.add.text(this.game.config.width * 0.5, 128, "NO AMMO LEFT", {
         fontFamily: 'monospace',

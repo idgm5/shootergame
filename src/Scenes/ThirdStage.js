@@ -7,8 +7,10 @@ import {
   GunShip,
   CarrierShip
 } from '../entities';
+const Storage = require('../modules/storage');
 
-var score = JSON.parse(localStorage.getItem('currentScore'));
+var timer;
+var score = Storage.getCurrentScore();
 var scoreText;
 var highText;
 var timerText;
@@ -17,10 +19,10 @@ var ammoText;
 var zero = 0;
 var sec = 0;
 
-const highestScore = JSON.parse(localStorage.getItem('highestScore'));
+const highestScore = Storage.getHighScore();
 
 if (highestScore === null) {
-  localStorage.setItem('highestScore', JSON.stringify(zero));
+  Storage.highScore(zero);
 }
 
 export default class ThirdStage extends Phaser.Scene {
@@ -162,9 +164,9 @@ export default class ThirdStage extends Phaser.Scene {
         enemy.explode(true);
         playerLaser.destroy();
         score += 1;
-        localStorage.setItem('currentScore', JSON.stringify(score));
+        Storage.currentScore(score);
         if (score > parseInt(highestScore)) {
-          localStorage.setItem('highestScore', JSON.stringify(score));
+          Storage.highScore(score);
         }
       }
     });
@@ -220,8 +222,8 @@ export default class ThirdStage extends Phaser.Scene {
 
 
   update() {
-    const lasthigh = JSON.parse(localStorage.getItem('highestScore'));
-    const currentAmmo = JSON.parse(localStorage.getItem('Ammunition'));
+    const lasthigh = Storage.getHighScore()
+    const currentAmmo = Storage.currentAmmo();
 
     highText.setText('Highest: ' + lasthigh);
     scoreText.setText('Score: ' + score);
@@ -229,7 +231,7 @@ export default class ThirdStage extends Phaser.Scene {
 
     if(currentAmmo < zero){
       this.player.onDestroy();
-      sec = 99999999999;
+      clearInterval(timer);
     }
 
     if (!this.player.getData("isDead")) {

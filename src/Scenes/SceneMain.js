@@ -8,6 +8,9 @@ import {
   CarrierShip
 } from '../entities';
 
+const Storage = require('../modules/storage');
+
+var timer;
 var score = 0;
 var scoreText;
 var highText;
@@ -18,10 +21,10 @@ var zero = 0;
 var sec = 0;
 var ammunition = 100;
 
-const highestScore = JSON.parse(localStorage.getItem('highestScore'));
+const highestScore = Storage.getHighScore();
 
 if (highestScore === null) {
-  localStorage.setItem('highestScore', JSON.stringify(zero));
+  Storage.highScore(zero);
 }
 
 export default class SceneMain extends Phaser.Scene {
@@ -32,7 +35,6 @@ export default class SceneMain extends Phaser.Scene {
   }
 
   preload() {
-    localStorage.setItem('currentScore', JSON.stringify(zero));
 
     this.load.image('deepspace', 'assets/Background-1.png')
 
@@ -62,7 +64,8 @@ export default class SceneMain extends Phaser.Scene {
   }
 
   create() {
-    localStorage.setItem('Ammunition', JSON.stringify(ammunition));
+    Storage.currentScore(zero);
+    Storage.setAmmo(ammunition);
 
     this.bg = this.add.image(240, 320, 'deepspace');
 
@@ -192,9 +195,9 @@ export default class SceneMain extends Phaser.Scene {
         enemy.explode(true);
         playerLaser.destroy();
         score += 1;
-        localStorage.setItem('currentScore', JSON.stringify(score));
+        Storage.currentScore(score);
         if (score > parseInt(highestScore)) {
-          localStorage.setItem('highestScore', JSON.stringify(score));
+          Storage.highScore(score);
         }
       }
     });
@@ -224,7 +227,7 @@ export default class SceneMain extends Phaser.Scene {
 
     sec = 60;
     //Add timer
-    var timer = setInterval(function() {
+    timer = setInterval(function() {
       timerText.setText('Time Left: ' + sec);
       sec--;
       if (sec < 0) {
@@ -239,8 +242,6 @@ export default class SceneMain extends Phaser.Scene {
 
   }
 
-
-
   getEnemiesByType(type) {
     var arr = [];
     for (var i = 0; i < this.enemies.getChildren().length; i++) {
@@ -254,8 +255,8 @@ export default class SceneMain extends Phaser.Scene {
 
 
   update() {
-    const lasthigh = JSON.parse(localStorage.getItem('highestScore'));
-    const currentAmmo = JSON.parse(localStorage.getItem('Ammunition'));
+    const lasthigh = Storage.getHighScore();
+    const currentAmmo = Storage.currentAmmo();
 
     highText.setText('Highest: ' + lasthigh);
     scoreText.setText('Score: ' + score);
@@ -263,7 +264,7 @@ export default class SceneMain extends Phaser.Scene {
 
     if (currentAmmo < zero) {
       this.player.onDestroy();
-      sec = 99999999999;
+      clearInterval(timer);
     }
 
     if (!this.player.getData("isDead")) {

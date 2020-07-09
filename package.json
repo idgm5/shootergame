@@ -5,20 +5,24 @@
   "main": "src/index.js",
   "scripts": {
     "build": "webpack",
-    "start": "npm run build && webpack-dev-server --host=0.0.0.0 --port=$PORT --disable-host-check"
+    "start": "npm run build && webpack-dev-server --port=8000",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://scottwestover@bitbucket.org/creativerendering/phaser3-template.git"
+    "url": "git+https://github.com/idgm5/shootergame.git"
   },
   "license": "MIT",
   "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
   "bugs": {
-    "url": "https://github.com/photonstorm/phaser3-project-template/issues"
+    "url": "https://github.com/idgm5/shootergame.git/issues"
   },
-  "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
+  "homepage": "https://github.com/idgm5/shootergame",
   "devDependencies": {
+    "@babel/preset-env": "^7.10.4",
+    "babel-jest": "^26.1.0",
     "canvas": "^2.1.0",
+    "jest": "^26.1.0",
     "phaser": "^3.3.0",
     "raw-loader": "^0.5.1",
     "webpack": "^3.12.0",
