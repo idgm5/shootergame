@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import 'phaser';
 import config from './Config/config';
 import SceneMain from './Scenes/SceneMain';
@@ -8,7 +10,6 @@ import SecondStage from './Scenes/SecondStage';
 import ThirdStage from './Scenes/ThirdStage';
 import SceneIntro from './Scenes/SceneIntro';
 
-let Phaser;
 class Game extends Phaser.Game {
   constructor() {
     super(config);

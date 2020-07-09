@@ -3,11 +3,10 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-use-before-define */
+/* eslint-disable no-unused-vars */
 
 let ammunition = 100;
 const Storage = require('./modules/storage');
-
-let Phaser;
 
 export class Entity extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, key, type) {
