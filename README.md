@@ -17,12 +17,19 @@ cd /shootergame/
 ```
 Run  `npm install --global http-server` and then `http-server ./` finally open your web browser at `http://localhost:8080/`
 
+## Quick starting Guide
++ MOVE UP: Press [W] key
++ MOVE DOWN: Press [S] key
++ MOVE LEFT: Press [A] key
++ MOVE RIGHT: Press [D] key
++ SHOOT LASER: Press [SPACEBAR] key
+
 ## Demo
 
 [Hosted on Heroku](http://startrooper.herokuapp.com/)
 
 ## Screenshot
-![image](https://i.imgur.com/37lduuC.png)
+![image](https://i.imgur.com/uRdiEVI.png)
 
 ## Instructions to run the tests
 
