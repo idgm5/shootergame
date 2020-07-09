@@ -25,7 +25,7 @@ let stageText;
 let ammoText;
 const zero = 0;
 let sec = 0;
-const ammunition = 100;
+let ammunition = 100;
 
 const highestScore = Storage.getHighScore();
 

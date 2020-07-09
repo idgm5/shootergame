@@ -48,7 +48,7 @@ export default class SceneTopScores extends Phaser.Scene {
     this.add.dom(this.game.config.width * 0.45, this.game.config.height * 0.8, div, 'background-color: transparent; width: 220px; height: 0; font: 48px Arial');
 
     const btn = document.getElementById('backtomenu');
-    btn.onclick = () => this.scene.start('SceneMainMenu');
+    btn.onclick = () => window.location.reload();
   }
 
   update() {

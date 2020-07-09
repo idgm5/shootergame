@@ -15,7 +15,7 @@ export default class SceneMainMenu extends Phaser.Scene {
 
   create() {
     this.bg = this.add.image(240, 320, 'deepspace-menu');
-    this.title = this.add.text(this.game.config.width * 0.5, 128, 'SPACE TROOPER', {
+    this.title = this.add.text(this.game.config.width * 0.5, 128, 'STAR TROOPER', {
       fontFamily: 'monospace',
       fontSize: 48,
       fontStyle: 'bold',

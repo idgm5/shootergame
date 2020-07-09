@@ -44,7 +44,7 @@ export default class SceneScores extends Phaser.Scene {
 
     const btn = document.getElementById('button');
     const name = document.getElementById('tag');
-    btn.onclick = () => SubmitScore.send(tag.value, currentScore).then(this.scene.start('SceneMainMenu'));
+    btn.onclick = () => SubmitScore.send(tag.value, currentScore).then(this.scene.start('SceneTopScores'));
 
     const currentScore = Storage.getCurrentScore();
     const lasthigh = Storage.getHighScore();
